@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Firm Settings & Configuration — LexCounsel</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <span class="scale-icon">⚖</span>
+          <span>LEXCOUNSEL</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="sidebar-nav-title">Administration</span>
+        <a href="dashboard.html" class="nav-item">
+          <span class="icon">▦</span>
+          <span>Practice Overview</span>
+        </a>
+        <a href="cases.html" class="nav-item">
+          <span class="icon">▤</span>
+          <span>Cases & Triage</span>
+        </a>
+        <a href="users.html" class="nav-item">
+          <span class="icon">👥</span>
+          <span>User Management</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+          <span class="icon">◷</span>
+          <span>Firm Calendar</span>
+        </a>
+        <a href="documents.html" class="nav-item">
+          <span class="icon">▱</span>
+          <span>File Repository</span>
+        </a>
+        <a href="invoices.html" class="nav-item">
+          <span class="icon">💳</span>
+          <span>Invoicing & Billing</span>
+        </a>
+        <a href="reports.html" class="nav-item">
+          <span class="icon">📊</span>
+          <span>Analytics & Reports</span>
+        </a>
+        <a href="settings.html" class="nav-item active">
+          <span class="icon">⚙</span>
+          <span>Firm Settings</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../help.html" class="nav-item" style="color:#94a3b8;">
+          <span class="icon">?</span>
+          <span>User Guide</span>
+        </a>
+        <button class="nav-item" data-action="logout" style="background:none; border:none; text-align:left; width:100%; color:#f87171;">
+          <span class="icon">↩</span>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn">☰</button>
+          <div class="eyebrow" style="margin:0;">Practice Configuration</div>
+        </div>
+        <div class="topbar-right">
+          <a href="settings.html" class="user-profile-menu">
+            <div class="user-avatar" style="background:var(--gold);">AD</div>
+            <div class="user-info">
+              <span class="user-name">Administrator</span>
+              <span class="user-role">ADMIN</span>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Firm Operational Settings</h1>
+            <p class="page-subtitle">Configure practice entity details, business hours, and operational contact points.</p>
+          </div>
+        </div>
+
+        <div style="max-width:720px;">
+          <div class="panel">
+            <div class="panel-body">
+              <form id="settings-form">
+                <div class="form-group">
+                  <label class="form-label" for="firm-name">Legal Practice Name <span class="required">*</span></label>
+                  <input type="text" id="firm-name" class="form-control" value="LexCounsel Law Firm & Partners" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="firm-email">Firm Inquiries Email <span class="required">*</span></label>
+                    <input type="email" id="firm-email" class="form-control" value="contact@lexcounsel.example" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="firm-phone">Practice Telephone <span class="required">*</span></label>
+                    <input type="tel" id="firm-phone" class="form-control" value="+1 (212) 555-0190" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="firm-address">Principal Office Address</label>
+                  <textarea id="firm-address" class="form-control" rows="2">450 Lexington Avenue, 28th Floor, New York, NY 10017</textarea>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="firm-hours">Consultation Hours</label>
+                    <input type="text" id="firm-hours" class="form-control" value="Monday – Friday: 9:00 AM – 6:00 PM EST">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="firm-currency">Default Currency</label>
+                    <input type="text" id="firm-currency" class="form-control" value="USD ($)" disabled style="background:var(--surface-alt);">
+                  </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-4 pt-3" style="border-top:1px solid var(--line);">
+                  <span class="text-xs text-muted">Firmwide System Configuration</span>
+                  <button type="submit" id="save-settings-btn" class="btn btn-gold">Save Settings</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module" src="../js/admin/settings.js"></script>
+</body>
+</html>

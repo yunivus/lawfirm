@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request Legal Service — LexCounsel</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <span class="scale-icon">⚖</span>
+          <span>LEXCOUNSEL</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="sidebar-nav-title">Client Workspace</span>
+        <a href="dashboard.html" class="nav-item">
+          <span class="icon">▦</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="cases.html" class="nav-item">
+          <span class="icon">▤</span>
+          <span>My Cases</span>
+        </a>
+        <a href="services.html" class="nav-item active">
+          <span class="icon">＋</span>
+          <span>Request Service</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+          <span class="icon">◷</span>
+          <span>Appointments</span>
+        </a>
+        <a href="documents.html" class="nav-item">
+          <span class="icon">▱</span>
+          <span>Documents</span>
+        </a>
+        <a href="messages.html" class="nav-item">
+          <span class="icon">💬</span>
+          <span>Messages</span>
+        </a>
+        <a href="invoices.html" class="nav-item">
+          <span class="icon">💳</span>
+          <span>Invoices</span>
+        </a>
+        <a href="notifications.html" class="nav-item">
+          <span class="icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <span class="icon">⚙</span>
+          <span>My Profile</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../help.html" class="nav-item" style="color:#94a3b8;">
+          <span class="icon">?</span>
+          <span>User Guide</span>
+        </a>
+        <button class="nav-item" data-action="logout" style="background:none; border:none; text-align:left; width:100%; color:#f87171;">
+          <span class="icon">↩</span>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn">☰</button>
+          <div class="eyebrow" style="margin:0;">Client Services</div>
+        </div>
+        <div class="topbar-right">
+          <a href="notifications.html" class="notification-bell" aria-label="Notifications">
+            🔔
+            <span class="badge" style="display:none;">0</span>
+          </a>
+          <a href="profile.html" class="user-profile-menu">
+            <div class="user-avatar">CL</div>
+            <div class="user-info">
+              <span class="user-name">Client</span>
+              <span class="user-role">Client</span>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Request Legal Service</h1>
+            <p class="page-subtitle">Submit details regarding your legal inquiry or representation need. Our firm review committee will examine the submission and match you with specialized counsel.</p>
+          </div>
+        </div>
+
+        <div style="max-width:760px;">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="form-error" class="form-error mb-3" style="display:none;"></div>
+              
+              <form id="service-request-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="service-type">Practice Area / Service Type <span class="required">*</span></label>
+                    <select id="service-type" class="form-control" required>
+                      <option value="">-- Select practice area --</option>
+                      <option value="Litigation">Litigation & Court Proceedings</option>
+                      <option value="Corporate & Business">Corporate & Commercial Law</option>
+                      <option value="Family Law">Family Law, Divorce & Custody</option>
+                      <option value="Real Estate">Real Estate & Property Dispute</option>
+                      <option value="Estate & Trusts">Estate Planning, Wills & Trusts</option>
+                      <option value="Intellectual Property">Intellectual Property & Patents</option>
+                      <option value="General Consultation">General Legal Consultation</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="priority">Urgency / Priority</label>
+                    <select id="priority" class="form-control">
+                      <option value="normal" selected>Normal (Standard review within 24h)</option>
+                      <option value="high">High (Urgent hearing / filing deadline)</option>
+                      <option value="critical">Critical (Imminent legal action)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="subject">Matter Title / Summary <span class="required">*</span></label>
+                  <input type="text" id="subject" class="form-control" placeholder="e.g. Commercial Lease Contract Review for 500 Broad St." required>
+                  <span class="form-help">A concise title that identifies the contract, party, or legal issue.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="description">Detailed Description of Legal Matter <span class="required">*</span></label>
+                  <textarea id="description" class="form-control" style="min-height:140px;" placeholder="Please outline the facts, parties involved, any relevant dates or court deadlines, and the specific relief or legal outcome you are seeking..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Supporting Exhibit / Document (Optional)</label>
+                  <div class="dropzone" id="file-dropzone">
+                    <div class="dropzone-icon">📎</div>
+                    <div class="dropzone-title">Click to attach file or drag & drop</div>
+                    <div class="dropzone-desc">Allowed formats: PDF, PNG, JPG, DOCX (Up to 10 MB)</div>
+                    <input type="file" id="file-input" class="hidden" accept=".pdf,.png,.jpg,.jpeg,.docx">
+                    <div id="file-name-display" class="mt-2 text-sm text-bold" style="color:var(--navy); display:none;"></div>
+                  </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-4 pt-3" style="border-top:1px solid var(--line);">
+                  <a href="dashboard.html" class="btn btn-outline">Cancel</a>
+                  <button type="submit" id="submit-btn" class="btn btn-gold">
+                    <span>Submit Legal Request →</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module" src="../js/client/services.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Firm Administration & Governance — LexCounsel</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <span class="scale-icon">⚖</span>
+          <span>LEXCOUNSEL</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="sidebar-nav-title">Administration</span>
+        <a href="dashboard.html" class="nav-item active">
+          <span class="icon">▦</span>
+          <span>Practice Overview</span>
+        </a>
+        <a href="cases.html" class="nav-item">
+          <span class="icon">▤</span>
+          <span>Cases & Triage</span>
+        </a>
+        <a href="users.html" class="nav-item">
+          <span class="icon">👥</span>
+          <span>User Management</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+          <span class="icon">◷</span>
+          <span>Firm Calendar</span>
+        </a>
+        <a href="documents.html" class="nav-item">
+          <span class="icon">▱</span>
+          <span>File Repository</span>
+        </a>
+        <a href="invoices.html" class="nav-item">
+          <span class="icon">💳</span>
+          <span>Invoicing & Billing</span>
+        </a>
+        <a href="reports.html" class="nav-item">
+          <span class="icon">📊</span>
+          <span>Analytics & Reports</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <span class="icon">⚙</span>
+          <span>Firm Settings</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../help.html" class="nav-item" style="color:#94a3b8;">
+          <span class="icon">?</span>
+          <span>User Guide</span>
+        </a>
+        <button class="nav-item" data-action="logout" style="background:none; border:none; text-align:left; width:100%; color:#f87171;">
+          <span class="icon">↩</span>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn">☰</button>
+          <div class="eyebrow" style="margin:0;">Firm Administration</div>
+        </div>
+        <div class="topbar-right">
+          <a href="cases.html" class="notification-bell" aria-label="Requests">
+            📥
+            <span class="badge" id="pending-requests-badge" style="display:none;">0</span>
+          </a>
+          <a href="settings.html" class="user-profile-menu">
+            <div class="user-avatar" style="background:var(--gold);">AD</div>
+            <div class="user-info">
+              <span class="user-name">Administrator</span>
+              <span class="user-role">ADMIN</span>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Executive Firm Dashboard</h1>
+            <p class="page-subtitle">Firm operations, legal service intake triage, staff governance, and billings.</p>
+          </div>
+          <div class="page-actions">
+            <a href="cases.html" class="btn btn-gold">📥 Triage Requests</a>
+            <a href="invoices.html" class="btn btn-outline">＋ Issue Invoice</a>
+          </div>
+        </div>
+
+        <!-- Metric KPIs -->
+        <div class="grid-kpis">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Total Firm Matters</span>
+              <span class="kpi-icon">📁</span>
+            </div>
+            <div class="kpi-value" id="admin-kpi-cases">0</div>
+            <span class="kpi-hint">All historical & active cases</span>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Pending Intake Triage</span>
+              <span class="kpi-icon">📥</span>
+            </div>
+            <div class="kpi-value" id="admin-kpi-triage" style="color:var(--gold);">0</div>
+            <span class="kpi-hint">New client service inquiries</span>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Registered Users</span>
+              <span class="kpi-icon">👥</span>
+            </div>
+            <div class="kpi-value" id="admin-kpi-users">0</div>
+            <span class="kpi-hint">Clients, counsel, and staff</span>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Collections & Revenue</span>
+              <span class="kpi-icon">💳</span>
+            </div>
+            <div class="kpi-value" id="admin-kpi-revenue">$0.00</div>
+            <span class="kpi-hint">Settled fee receipts</span>
+          </div>
+        </div>
+
+        <!-- Pending Service Requests Review Section -->
+        <div class="panel mb-4" id="triage-panel">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Pending Legal Service Requests (Awaiting Triage & Attorney Assignment)</h3>
+            </div>
+            <a href="cases.html" class="btn-link text-xs" style="color:var(--gold); font-weight:600;">Manage All →</a>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Service Category</th>
+                  <th>Matter Summary</th>
+                  <th>Priority</th>
+                  <th>Submitted</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="triage-tbody">
+                <tr><td colspan="6" class="text-center text-muted" style="padding:24px;">Checking pending requests...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Grid of Recent Matters and Audit Logs -->
+        <div class="grid-2">
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Active Firm Matters</h3>
+              <a href="cases.html" class="btn-link text-xs" style="color:var(--gold); font-weight:600;">All Cases →</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Matter Ref</th>
+                    <th>Client</th>
+                    <th>Counsel</th>
+                    <th>Milestone</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-cases-tbody">
+                  <tr><td colspan="4" class="text-center text-muted" style="padding:24px;">Loading cases...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Firm Audit Log & Compliance Record</h3>
+              <span class="text-xs text-muted">Immutable Activity</span>
+            </div>
+            <div class="panel-body" id="audit-list" style="display:flex; flex-direction:column; gap:10px;">
+              <div class="text-muted text-sm text-center py-3">Loading compliance records...</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module" src="../js/admin/dashboard.js"></script>
+</body>
+</html>

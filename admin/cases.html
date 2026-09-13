@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Firm Caseload & Triage — LexCounsel</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <span class="scale-icon">⚖</span>
+          <span>LEXCOUNSEL</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="sidebar-nav-title">Administration</span>
+        <a href="dashboard.html" class="nav-item">
+          <span class="icon">▦</span>
+          <span>Practice Overview</span>
+        </a>
+        <a href="cases.html" class="nav-item active">
+          <span class="icon">▤</span>
+          <span>Cases & Triage</span>
+        </a>
+        <a href="users.html" class="nav-item">
+          <span class="icon">👥</span>
+          <span>User Management</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+          <span class="icon">◷</span>
+          <span>Firm Calendar</span>
+        </a>
+        <a href="documents.html" class="nav-item">
+          <span class="icon">▱</span>
+          <span>File Repository</span>
+        </a>
+        <a href="invoices.html" class="nav-item">
+          <span class="icon">💳</span>
+          <span>Invoicing & Billing</span>
+        </a>
+        <a href="reports.html" class="nav-item">
+          <span class="icon">📊</span>
+          <span>Analytics & Reports</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <span class="icon">⚙</span>
+          <span>Firm Settings</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../help.html" class="nav-item" style="color:#94a3b8;">
+          <span class="icon">?</span>
+          <span>User Guide</span>
+        </a>
+        <button class="nav-item" data-action="logout" style="background:none; border:none; text-align:left; width:100%; color:#f87171;">
+          <span class="icon">↩</span>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn">☰</button>
+          <div class="eyebrow" style="margin:0;">Firm Practice Oversight</div>
+        </div>
+        <div class="topbar-right">
+          <a href="settings.html" class="user-profile-menu">
+            <div class="user-avatar" style="background:var(--gold);">AD</div>
+            <div class="user-info">
+              <span class="user-name">Administrator</span>
+              <span class="user-role">ADMIN</span>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Firm Caseload & Intake Triage</h1>
+            <p class="page-subtitle">Review incoming client requests, assign lead counsel, and oversee milestone progression.</p>
+          </div>
+        </div>
+
+        <!-- Caseload Table -->
+        <div class="panel">
+          <div class="table-filter-bar">
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="case-search" class="form-control" placeholder="Search case title, client, or reference...">
+            </div>
+            <div class="filter-group">
+              <select id="status-filter" class="form-control" style="width:auto;">
+                <option value="">All Statuses</option>
+                <option value="request_submitted">Request Submitted</option>
+                <option value="lawyer_assigned">Lawyer Assigned</option>
+                <option value="documents_under_review">Documents Under Review</option>
+                <option value="case_preparation">Case Preparation</option>
+                <option value="proceedings">Court / Proceedings</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Matter Ref & Title</th>
+                  <th>Client</th>
+                  <th>Practice Area</th>
+                  <th>Assigned Counsel</th>
+                  <th>Status Milestone</th>
+                  <th>Filed Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="cases-tbody">
+                <tr><td colspan="7" class="text-center text-muted" style="padding:32px;">Loading firm matters...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module" src="../js/admin/cases.js"></script>
+</body>
+</html>

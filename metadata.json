@@ -1,0 +1,8 @@
+{
+  "name": "LexCounsel",
+  "description": "Professional Legal Services platform with client intake, case management, and attorney dashboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

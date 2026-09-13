@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attorney Case Workspace — LexCounsel</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <span class="scale-icon">⚖</span>
+          <span>LEXCOUNSEL</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="sidebar-nav-title">Counsel Workspace</span>
+        <a href="dashboard.html" class="nav-item">
+          <span class="icon">▦</span>
+          <span>Practice Overview</span>
+        </a>
+        <a href="cases.html" class="nav-item active">
+          <span class="icon">▤</span>
+          <span>Assigned Caseload</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+          <span class="icon">◷</span>
+          <span>Consultations</span>
+        </a>
+        <a href="messages.html" class="nav-item">
+          <span class="icon">💬</span>
+          <span>Client Messages</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <span class="icon">⚖</span>
+          <span>Bar & Profile</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../help.html" class="nav-item" style="color:#94a3b8;">
+          <span class="icon">?</span>
+          <span>Practice Manual</span>
+        </a>
+        <button class="nav-item" data-action="logout" style="background:none; border:none; text-align:left; width:100%; color:#f87171;">
+          <span class="icon">↩</span>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn">☰</button>
+          <a href="cases.html" class="text-sm text-muted">← Back to Caseload</a>
+        </div>
+        <div class="topbar-right">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="user-avatar" style="background:var(--navy);">AT</div>
+            <div class="user-info">
+              <span class="user-name">Attorney</span>
+              <span class="user-role">COUNSEL</span>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        <div class="page-header">
+          <div>
+            <div class="eyebrow" id="case-ref">Case Matter</div>
+            <h1 class="page-title" id="case-title">Loading Workspace...</h1>
+            <p class="page-subtitle" id="case-meta">Case representation file.</p>
+          </div>
+          <div class="page-actions">
+            <a href="messages.html" id="case-msg-link" class="btn btn-outline">Message Client</a>
+            <button id="update-stage-btn" class="btn btn-primary">⚖ Advance Case Milestone</button>
+          </div>
+        </div>
+
+        <!-- 6-Stage Timeline -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3 class="card-title">Procedural Progression</h3>
+            <span id="case-badge"></span>
+          </div>
+          <div class="card-body">
+            <div id="timeline-container"></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Left: Facts & History -->
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div class="panel">
+              <div class="panel-header">
+                <h3 class="panel-title">Matter Brief & Client Statement</h3>
+              </div>
+              <div class="panel-body">
+                <div class="form-row-3 mb-3">
+                  <div>
+                    <span class="text-xs text-muted" style="text-transform:uppercase; font-weight:700;">Client</span>
+                    <div style="font-weight:600; color:var(--navy); margin-top:2px;" id="client-name">—</div>
+                    <small id="client-email" class="text-muted">—</small>
+                  </div>
+                  <div>
+                    <span class="text-xs text-muted" style="text-transform:uppercase; font-weight:700;">Practice Area</span>
+                    <div style="font-weight:600; color:var(--navy); margin-top:2px;" id="case-type">—</div>
+                  </div>
+                  <div>
+                    <span class="text-xs text-muted" style="text-transform:uppercase; font-weight:700;">Urgency</span>
+                    <div style="font-weight:600; color:var(--navy); margin-top:2px;" id="case-priority">—</div>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="text-xs text-muted" style="text-transform:uppercase; font-weight:700;">Intake Statement</span>
+                  <p id="case-description" class="text-sm mt-1" style="background:var(--surface-alt); padding:14px; border-radius:var(--radius); border:1px solid var(--line); white-space:pre-wrap; line-height:1.6;">—</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone Transition Log -->
+            <div class="panel">
+              <div class="panel-header">
+                <h3 class="panel-title">Case Milestone Log & Legal Notes</h3>
+              </div>
+              <div class="panel-body" id="history-container" style="display:flex; flex-direction:column; gap:12px;">
+                <div class="text-muted text-sm">Loading historical transitions...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Documents Management -->
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div class="panel">
+              <div class="panel-header">
+                <h3 class="panel-title">Pleadings, Exhibits & File Repository</h3>
+                <button id="upload-doc-btn" class="btn btn-outline btn-sm">＋ File Document</button>
+              </div>
+              <div class="panel-body">
+                <div id="docs-list" style="display:flex; flex-direction:column; gap:10px;">
+                  <div class="text-muted text-sm">Loading files...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module" src="../js/lawyer/case.js"></script>
+</body>
+</html>

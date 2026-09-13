@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Billing & Invoices — LexCounsel</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <span class="scale-icon">⚖</span>
+          <span>LEXCOUNSEL</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="sidebar-nav-title">Client Workspace</span>
+        <a href="dashboard.html" class="nav-item">
+          <span class="icon">▦</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="cases.html" class="nav-item">
+          <span class="icon">▤</span>
+          <span>My Cases</span>
+        </a>
+        <a href="services.html" class="nav-item">
+          <span class="icon">＋</span>
+          <span>Request Service</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+          <span class="icon">◷</span>
+          <span>Appointments</span>
+        </a>
+        <a href="documents.html" class="nav-item">
+          <span class="icon">▱</span>
+          <span>Documents</span>
+        </a>
+        <a href="messages.html" class="nav-item">
+          <span class="icon">💬</span>
+          <span>Messages</span>
+        </a>
+        <a href="invoices.html" class="nav-item active">
+          <span class="icon">💳</span>
+          <span>Invoices</span>
+        </a>
+        <a href="notifications.html" class="nav-item">
+          <span class="icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <span class="icon">⚙</span>
+          <span>My Profile</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../help.html" class="nav-item" style="color:#94a3b8;">
+          <span class="icon">?</span>
+          <span>User Guide</span>
+        </a>
+        <button class="nav-item" data-action="logout" style="background:none; border:none; text-align:left; width:100%; color:#f87171;">
+          <span class="icon">↩</span>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn">☰</button>
+          <div class="eyebrow" style="margin:0;">Client Billing</div>
+        </div>
+        <div class="topbar-right">
+          <a href="notifications.html" class="notification-bell" aria-label="Notifications">
+            🔔
+            <span class="badge" style="display:none;">0</span>
+          </a>
+          <a href="profile.html" class="user-profile-menu">
+            <div class="user-avatar">CL</div>
+            <div class="user-info">
+              <span class="user-name">Client</span>
+              <span class="user-role">Client</span>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Legal Fee Invoices & Payment Portal</h1>
+            <p class="page-subtitle">Inspect professional fee statements, retainer billings, and remit payments online.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Your Invoices</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Invoice Ref</th>
+                  <th>Legal Matter</th>
+                  <th>Due Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="invoices-tbody">
+                <tr><td colspan="6" class="text-center text-muted" style="padding:32px;">Loading billing statements...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module" src="../js/client/invoices.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client Registration — LexCounsel Legal Management</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f5f9;
+      padding: 24px 16px;
+    }
+    .auth-card {
+      width: min(480px, 100%);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 36px 30px;
+    }
+    .auth-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .auth-brand .scale-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(184, 134, 11, 0.15);
+      color: var(--gold);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <a href="index.html" class="auth-brand">
+      <span class="scale-icon">⚖</span>
+      <span>LEXCOUNSEL</span>
+    </a>
+
+    <h1 style="font-size:22px; text-align:center; margin-bottom:6px;">Create Your Client Portal Account</h1>
+    <p class="text-muted text-sm text-center mb-4">Track your legal matters, submit requests, and securely message counsel.</p>
+
+    <div id="register-error" class="form-error mb-3 text-center" style="display:none;"></div>
+
+    <form id="register-form">
+      <div class="form-group">
+        <label class="form-label" for="name">Full Name <span class="required">*</span></label>
+        <input type="text" id="name" class="form-control" placeholder="e.g. Jordan Reed" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+          <input type="email" id="email" class="form-control" placeholder="jordan@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone Number</label>
+          <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 012-3456">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="password">Password <span class="required">*</span></label>
+          <input type="password" id="password" class="form-control" placeholder="Min. 6 characters" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="confirm-password">Confirm Password <span class="required">*</span></label>
+          <input type="password" id="confirm-password" class="form-control" placeholder="Repeat password" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="flex items-center gap-2 text-sm text-muted" style="cursor:pointer;">
+          <input type="checkbox" required checked>
+          <span>I agree to the Legal Services Terms & Privacy Notice</span>
+        </label>
+      </div>
+
+      <button type="submit" id="submit-btn" class="btn btn-primary" style="width:100%; padding:11px;">
+        <span>Create Client Account →</span>
+      </button>
+    </form>
+
+    <div class="mt-4 pt-3 text-center text-sm text-muted" style="border-top:1px solid var(--line);">
+      Already have an account? <a href="login.html" style="color:var(--gold); font-weight:600;">Sign in</a>
+    </div>
+    <div class="mt-2 text-center">
+      <small class="text-muted">🔒 Client data is securely protected and confidential under attorney-client privilege.</small>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module">
+    import { registerClient } from "./js/auth.js";
+    import { validateRegistration } from "./js/validation.js";
+    import { showToast } from "./js/ui.js";
+
+    const form = document.getElementById("register-form");
+    const errorEl = document.getElementById("register-error");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorEl.style.display = "none";
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      const val = validateRegistration({ name, email, password, confirmPassword });
+      if (!val.valid) {
+        errorEl.textContent = Object.values(val.errors)[0];
+        errorEl.style.display = "block";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span> Creating Account...';
+
+      try {
+        await registerClient({ name, email, phone, password });
+        showToast("Account created successfully! Welcome to LexCounsel.", "success");
+        setTimeout(() => {
+          window.location.href = "/client/dashboard.html";
+        }, 600);
+      } catch (err) {
+        let msg = err.message;
+        if (err.code === "auth/email-already-in-use") {
+          msg = "This email is already registered. Please sign in instead.";
+        } else if (err.code === "auth/weak-password") {
+          msg = "Password should be at least 6 characters.";
+        }
+        errorEl.textContent = msg;
+        errorEl.style.display = "block";
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "<span>Create Client Account →</span>";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,1 +1,229 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Welcome Back — LexCounsel</title><link rel="stylesheet" href="styles.css"></head><body class="auth-page"><div class="auth-wrap"><a class="brand auth-brand" href="index.html"><span class="brand-mark">⚖</span>LEXCOUNSEL</a><div class="card auth-card"><h1>Welcome Back</h1><div class="sub">Sign in to access your secure client portal</div><form data-demo="Signed in successfully" onsubmit="location.href='dashboard.html'"><div class="field"><label>Email address</label><input type="email" required placeholder="you@example.com"></div><div class="field"><label>Password</label><input type="password" required placeholder="••••••••"></div><div style="display:flex;justify-content:space-between;align-items:center;font-size:11px"><label><input type="checkbox"> Remember me</label><a class="btn-link" href="#" data-toast="Password reset link requested">Forgot password?</a></div><button class="btn btn-gold full" type="submit">Sign In →</button></form><div class="auth-foot">Don't have an account? <a href="intake.html">Create one</a></div><div class="auth-foot">🔒 Your information is protected with secure encryption.</div></div></div><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign In — LexCounsel Legal Management</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f5f9;
+      padding: 24px 16px;
+    }
+    .auth-card {
+      width: min(440px, 100%);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 32px 28px;
+    }
+    .auth-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+    .auth-brand .scale-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(184, 134, 11, 0.15);
+      color: var(--gold);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .demo-selector {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+    .demo-selector-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .demo-btns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .demo-btn {
+      padding: 8px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--navy);
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .demo-btn:hover {
+      border-color: var(--gold);
+      background: var(--gold-light);
+      color: var(--gold-hover);
+    }
+  </style>
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <a href="index.html" class="auth-brand">
+      <span class="scale-icon">⚖</span>
+      <span>LEXCOUNSEL</span>
+    </a>
+
+    <h1 style="font-size:22px; text-align:center; margin-bottom:6px;">Sign In to Your Account</h1>
+    <p class="text-muted text-sm text-center mb-4">Access your secure client portal, cases, or practice dashboard</p>
+
+    <!-- One-Click Demo Role Login -->
+    <div class="demo-selector">
+      <div class="demo-selector-title">
+        <span>Instant Demo Access</span>
+        <span class="text-muted" style="font-size:10px; font-weight:normal;">Select a role</span>
+      </div>
+      <div class="demo-btns">
+        <button type="button" class="demo-btn" id="demo-client-btn">Client Portal</button>
+        <button type="button" class="demo-btn" id="demo-lawyer-btn">Attorney</button>
+        <button type="button" class="demo-btn" id="demo-admin-btn">Administrator</button>
+      </div>
+    </div>
+
+    <form id="login-form">
+      <div id="login-error" class="form-error mb-2 text-center" style="display:none;"></div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" class="form-control" placeholder="name@example.com" required autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <div class="form-label">
+          <span>Password <span class="required">*</span></span>
+          <a href="forgot-password.html" class="text-xs text-muted" style="color:var(--gold);">Forgot password?</a>
+        </div>
+        <input type="password" id="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <div class="form-group">
+        <label class="flex items-center gap-2 text-sm text-muted" style="cursor:pointer;">
+          <input type="checkbox" id="remember-me" checked>
+          <span>Keep me signed in</span>
+        </label>
+      </div>
+
+      <button type="submit" id="submit-btn" class="btn btn-primary" style="width:100%; padding:11px;">
+        <span>Sign In →</span>
+      </button>
+    </form>
+
+    <div class="mt-4 pt-4 text-center text-sm text-muted" style="border-top:1px solid var(--line);">
+      New client needing legal help? <a href="register.html" style="color:var(--gold); font-weight:600;">Create an account</a>
+    </div>
+    <div class="mt-2 text-center">
+      <a href="help.html" class="text-xs text-muted">Need help or role guidance? View User Guide</a>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script type="module">
+    import { login, quickDemoLogin, routeForRole } from "./js/auth.js";
+    import { showToast } from "./js/ui.js";
+
+    const form = document.getElementById("login-form");
+    const errorEl = document.getElementById("login-error");
+    const submitBtn = document.getElementById("submit-btn");
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.style.display = "block";
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorEl.style.display = "none";
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span> Signing in...';
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const profile = await login(email, password);
+        showToast("Signed in successfully", "success");
+        
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get("redirect");
+        setTimeout(() => {
+          window.location.href = redirect || routeForRole(profile.role);
+        }, 300);
+      } catch (err) {
+        let msg = "Invalid email or password.";
+        if (err.code === "auth/user-not-found" || err.code === "auth/invalid-credential") {
+          msg = "No account found with this email or password is incorrect.";
+        } else if (err.code === "auth/too-many-requests") {
+          msg = "Too many failed attempts. Please try again in a few moments.";
+        } else if (err.message) {
+          msg = err.message;
+        }
+        showError(msg);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "<span>Sign In →</span>";
+      }
+    });
+
+    async function handleDemo(role, btn) {
+      errorEl.style.display = "none";
+      const originalText = btn.textContent;
+      btn.textContent = "Loading...";
+      btn.disabled = true;
+
+      try {
+        const profile = await quickDemoLogin(role);
+        showToast(`Signed in as ${role.toUpperCase()}`, "success");
+        setTimeout(() => {
+          window.location.href = routeForRole(profile.role);
+        }, 300);
+      } catch (err) {
+        showError("Demo sign in failed: " + err.message);
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    document.getElementById("demo-client-btn").addEventListener("click", function() {
+      handleDemo("client", this);
+    });
+    document.getElementById("demo-lawyer-btn").addEventListener("click", function() {
+      handleDemo("lawyer", this);
+    });
+    document.getElementById("demo-admin-btn").addEventListener("click", function() {
+      handleDemo("admin", this);
+    });
+  </script>
+</body>
+</html>

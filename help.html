@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Guide & Workflow Documentation — LexCounsel</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .guide-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .guide-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body style="background:var(--bg);">
+  <header style="background:var(--surface); border-bottom:1px solid var(--line); padding:16px 28px;">
+    <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center;">
+      <a href="index.html" class="sidebar-brand" style="color:var(--navy);">
+        <span class="scale-icon">⚖</span>
+        <span>LEXCOUNSEL</span>
+      </a>
+      <div style="display:flex; gap:12px;">
+        <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+        <a href="register.html" class="btn btn-gold btn-sm">Register as Client</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="guide-container">
+    <div class="mb-4">
+      <div class="eyebrow">Documentation & Practice Manual</div>
+      <h1 class="serif" style="font-size:30px;">Web-Based Law Firm Management Guide</h1>
+      <p class="text-muted mt-1">End-to-end instructions for Clients, Attorneys, and Firm Administrators.</p>
+    </div>
+
+    <!-- Role Switcher Shortcuts -->
+    <div class="panel mb-4" style="background:var(--navy); color:#fff; padding:20px 24px;">
+      <h3 style="color:#fff; margin-bottom:6px;">Instant Live Roles & Testing Accounts</h3>
+      <p style="color:#cbd5e1; font-size:13px; margin-bottom:14px;">You can test each role directly from the sign-in page using our instant 1-click role switcher:</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="login.html" class="btn btn-gold btn-sm">Sign in as Client</a>
+        <a href="login.html" class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,0.3);">Sign in as Attorney</a>
+        <a href="login.html" class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,0.3);">Sign in as Administrator</a>
+      </div>
+    </div>
+
+    <!-- Client Workflow -->
+    <div class="guide-section">
+      <h2 class="serif">1. Client Lifecycle & Workflow</h2>
+      <p class="text-muted text-sm mt-1">From initial service request to case resolution and transparent timeline tracking.</p>
+      
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div>
+          <h4 style="color:var(--navy);">Request a Legal Service</h4>
+          <p class="text-sm text-muted">Navigate to <b>Request Service</b> in your client portal. Select a legal service category (Litigation, Corporate, Family, Real Estate, IP), provide a clear summary and description of your legal situation, and upload supporting documents.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div>
+          <h4 style="color:var(--navy);">Live Case Progress Tracking</h4>
+          <p class="text-sm text-muted">Once administrative review completes and counsel is assigned, monitor your matter via the 6-stage milestone tracker:</p>
+          <div style="font-size:12px; font-weight:600; color:var(--navy); margin-top:6px; line-height:1.6;">
+            1. Request Submitted → 2. Lawyer Assigned → 3. Documents Under Review → 4. Case Preparation → 5. Court / Legal Proceedings → 6. Case Completed
+          </div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div>
+          <h4 style="color:var(--navy);">Consultation Scheduling & Secure Communication</h4>
+          <p class="text-sm text-muted">Book consultations with your attorney directly with automatic conflict prevention. Use the case message room to send privileged communications directly to your assigned attorney.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lawyer Workflow -->
+    <div class="guide-section">
+      <h2 class="serif">2. Attorney Case Management Workflow</h2>
+      <p class="text-muted text-sm mt-1">Tools for managing assigned caseloads, legal proceedings, filings, and client consultations.</p>
+
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div>
+          <h4 style="color:var(--navy);">Review Assigned Matters</h4>
+          <p class="text-sm text-muted">View your active case list on the Attorney Dashboard. Inspect initial client intake statements and filed exhibits.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div>
+          <h4 style="color:var(--navy);">Case Progression & Milestone Updates</h4>
+          <p class="text-sm text-muted">Advance case status through the legal lifecycle. Each status change prompts for a legal progress note and updates the client's timeline in real-time.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div>
+          <h4 style="color:var(--navy);">Calendar & Client Consultations</h4>
+          <p class="text-sm text-muted">Review incoming appointment requests, approve confirmed dates, or propose alternative times.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Workflow -->
+    <div class="guide-section">
+      <h2 class="serif">3. Firm Administration & Governance</h2>
+      <p class="text-muted text-sm mt-1">Full operational oversight, user credential controls, billing, and practice analytics.</p>
+
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div>
+          <h4 style="color:var(--navy);">Staff Management & Role Delegation</h4>
+          <p class="text-sm text-muted">Manage user roles, activate or suspend credentials, and onboard attorneys with Bar registration details.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div>
+          <h4 style="color:var(--navy);">Service Request Triage & Attorney Assignment</h4>
+          <p class="text-sm text-muted">Evaluate new client legal inquiries and convert approved inquiries into formal firm cases, assigning appropriate counsel based on specialization.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div>
+          <h4 style="color:var(--navy);">Invoicing, Reports & Audit Records</h4>
+          <p class="text-sm text-muted">Issue invoices to clients, monitor collections, export practice statistics to CSV, and inspect security audit logs.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
