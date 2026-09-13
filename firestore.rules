@@ -1,8 +1,115 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function userRole() {
+      return signedIn()
+        ? get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role
+        : null;
+    }
+
+    function isAdmin() {
+      return signedIn() && userRole() == 'admin';
+    }
+
+    function isLawyer() {
+      return signedIn() && userRole() == 'lawyer';
+    }
+
+    function isClient() {
+      return signedIn() && userRole() == 'client';
+    }
+
+    match /users/{userId} {
+      allow create: if signedIn() && request.auth.uid == userId
+        && request.resource.data.role == 'client'
+        && request.resource.data.status == 'active';
+      allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow update: if isAdmin()
+        || (signedIn() && request.auth.uid == userId
+          && request.resource.data.role == resource.data.role);
+      allow delete: if isAdmin();
+    }
+
+    match /clients/{clientId} {
+      allow read, write: if signedIn() && (request.auth.uid == clientId || isAdmin());
+    }
+
+    match /lawyers/{lawyerId} {
+      allow read: if signedIn();
+      allow write: if isAdmin() || (isLawyer() && request.auth.uid == lawyerId);
+    }
+
+    match /cases/{caseId} {
+      allow read: if isAdmin()
+        || (isClient() && resource.data.clientId == request.auth.uid)
+        || (isLawyer() && resource.data.lawyerId == request.auth.uid);
+      allow create: if isClient() && request.resource.data.clientId == request.auth.uid;
+      allow update: if isAdmin() || (isLawyer() && resource.data.lawyerId == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
+    match /serviceRequests/{requestId} {
+      allow read: if isAdmin() || (isClient() && resource.data.clientId == request.auth.uid);
+      allow create: if isClient() && request.resource.data.clientId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /appointments/{appointmentId} {
+      allow read: if isAdmin()
+        || (isClient() && resource.data.clientId == request.auth.uid)
+        || (isLawyer() && resource.data.lawyerId == request.auth.uid);
+      allow create: if isClient() && request.resource.data.clientId == request.auth.uid;
+      allow update: if isAdmin()
+        || (isLawyer() && resource.data.lawyerId == request.auth.uid)
+        || (isClient() && resource.data.clientId == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
+    match /documents/{documentId} {
+      allow read: if isAdmin()
+        || (signedIn() && resource.data.ownerId == request.auth.uid)
+        || (signedIn() && resource.data.clientId == request.auth.uid)
+        || (signedIn() && resource.data.lawyerId == request.auth.uid);
+      allow create: if signedIn();
+      allow update, delete: if isAdmin() || (signedIn() && resource.data.ownerId == request.auth.uid);
+    }
+
+    match /invoices/{invoiceId} {
+      allow read: if isAdmin() || (isClient() && resource.data.clientId == request.auth.uid);
+      allow write: if isAdmin();
+    }
+
+    match /notifications/{notificationId} {
+      allow read, update: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create: if signedIn();
+      allow delete: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+    }
+
+    match /caseStatusHistory/{historyId} {
+      allow read: if isAdmin()
+        || (signedIn() && get(/databases/$(database)/documents/cases/$(resource.data.caseId)).data.clientId == request.auth.uid)
+        || (isLawyer() && get(/databases/$(database)/documents/cases/$(resource.data.caseId)).data.lawyerId == request.auth.uid);
+      allow create: if isAdmin() || isLawyer() || isClient();
+      allow update, delete: if isAdmin();
+    }
+
+    match /auditLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if signedIn();
+      allow update, delete: if false;
+    }
+
+    match /settings/{settingId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
   }
 }

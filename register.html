@@ -115,7 +115,6 @@
   <script type="module">
     import { registerClient } from "./js/auth.js";
     import { validateRegistration } from "./js/validation.js";
-    import { showToast } from "./js/ui.js";
 
     const form = document.getElementById("register-form");
     const errorEl = document.getElementById("register-error");
@@ -143,16 +142,15 @@
 
       try {
         await registerClient({ name, email, phone, password });
-        showToast("Account created successfully! Welcome to LexCounsel.", "success");
-        setTimeout(() => {
-          window.location.href = "/client/dashboard.html";
-        }, 600);
+        window.location.replace("/client/dashboard.html");
       } catch (err) {
         let msg = err.message;
         if (err.code === "auth/email-already-in-use") {
           msg = "This email is already registered. Please sign in instead.";
         } else if (err.code === "auth/weak-password") {
           msg = "Password should be at least 6 characters.";
+        } else if (err.code === "auth/operation-not-allowed") {
+          msg = "Email sign-up is disabled in Firebase. Enable Email/Password in Firebase Console > Authentication > Sign-in method.";
         }
         errorEl.textContent = msg;
         errorEl.style.display = "block";

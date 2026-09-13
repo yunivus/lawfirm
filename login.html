@@ -48,45 +48,6 @@
       align-items: center;
       justify-content: center;
     }
-    .demo-selector {
-      background: var(--surface-alt);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 14px;
-      margin-bottom: 20px;
-    }
-    .demo-selector-title {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--navy);
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .demo-btns {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-    .demo-btn {
-      padding: 8px 6px;
-      font-size: 11px;
-      font-weight: 600;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-      color: var(--navy);
-      text-align: center;
-      transition: all 0.15s;
-    }
-    .demo-btn:hover {
-      border-color: var(--gold);
-      background: var(--gold-light);
-      color: var(--gold-hover);
-    }
   </style>
 </head>
 <body class="auth-page">
@@ -98,19 +59,6 @@
 
     <h1 style="font-size:22px; text-align:center; margin-bottom:6px;">Sign In to Your Account</h1>
     <p class="text-muted text-sm text-center mb-4">Access your secure client portal, cases, or practice dashboard</p>
-
-    <!-- One-Click Demo Role Login -->
-    <div class="demo-selector">
-      <div class="demo-selector-title">
-        <span>Instant Demo Access</span>
-        <span class="text-muted" style="font-size:10px; font-weight:normal;">Select a role</span>
-      </div>
-      <div class="demo-btns">
-        <button type="button" class="demo-btn" id="demo-client-btn">Client Portal</button>
-        <button type="button" class="demo-btn" id="demo-lawyer-btn">Attorney</button>
-        <button type="button" class="demo-btn" id="demo-admin-btn">Administrator</button>
-      </div>
-    </div>
 
     <form id="login-form">
       <div id="login-error" class="form-error mb-2 text-center" style="display:none;"></div>
@@ -151,7 +99,7 @@
   <div class="toast-container"></div>
 
   <script type="module">
-    import { login, quickDemoLogin, routeForRole } from "./js/auth.js";
+    import { login, routeForRole } from "./js/auth.js";
     import { showToast } from "./js/ui.js";
 
     const form = document.getElementById("login-form");
@@ -187,6 +135,8 @@
           msg = "No account found with this email or password is incorrect.";
         } else if (err.code === "auth/too-many-requests") {
           msg = "Too many failed attempts. Please try again in a few moments.";
+        } else if (err.code === "auth/operation-not-allowed") {
+          msg = "Email sign-in is disabled in Firebase. Enable Email/Password in Firebase Console > Authentication > Sign-in method.";
         } else if (err.message) {
           msg = err.message;
         }
@@ -196,34 +146,6 @@
       }
     });
 
-    async function handleDemo(role, btn) {
-      errorEl.style.display = "none";
-      const originalText = btn.textContent;
-      btn.textContent = "Loading...";
-      btn.disabled = true;
-
-      try {
-        const profile = await quickDemoLogin(role);
-        showToast(`Signed in as ${role.toUpperCase()}`, "success");
-        setTimeout(() => {
-          window.location.href = routeForRole(profile.role);
-        }, 300);
-      } catch (err) {
-        showError("Demo sign in failed: " + err.message);
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }
-    }
-
-    document.getElementById("demo-client-btn").addEventListener("click", function() {
-      handleDemo("client", this);
-    });
-    document.getElementById("demo-lawyer-btn").addEventListener("click", function() {
-      handleDemo("lawyer", this);
-    });
-    document.getElementById("demo-admin-btn").addEventListener("click", function() {
-      handleDemo("admin", this);
-    });
   </script>
 </body>
 </html>
