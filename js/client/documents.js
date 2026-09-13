@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   uploadBtn.addEventListener("click", () => {
     if (userCases.length === 0) {
-      alert("You need to have at least one active legal matter before uploading case files.");
+      showToast("You need to have at least one active legal matter before uploading case files.", "error");
       return;
     }
 

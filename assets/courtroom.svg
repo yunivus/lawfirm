@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06182c"/>
+      <stop offset="60%" stop-color="#0d2b4a"/>
+      <stop offset="100%" stop-color="#143c66"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e5b824"/>
+      <stop offset="50%" stop-color="#ffd966"/>
+      <stop offset="100%" stop-color="#c49710"/>
+    </linearGradient>
+    <linearGradient id="columnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="30%" stop-color="#2a4f7e"/>
+      <stop offset="70%" stop-color="#2a4f7e"/>
+      <stop offset="100%" stop-color="#182e4b"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bgGrad)"/>
+
+  <!-- Subtle Architecture / Classical Facade -->
+  <g opacity="0.4">
+    <!-- Pediment -->
+    <polygon points="400,60 180,140 620,140" fill="#132f50" stroke="#ffd966" stroke-width="1.5"/>
+    <polygon points="400,80 230,135 570,135" fill="none" stroke="#ffd966" stroke-width="0.75" opacity="0.6"/>
+    
+    <!-- Entablature -->
+    <rect x="170" y="140" width="460" height="24" fill="#193c64" stroke="#ffd966" stroke-width="1"/>
+    <rect x="190" y="150" width="420" height="4" fill="url(#goldGrad)" opacity="0.6"/>
+
+    <!-- Columns -->
+    <g fill="url(#columnGrad)" stroke="#ffd966" stroke-width="0.8">
+      <!-- Col 1 -->
+      <rect x="210" y="164" width="34" height="220" rx="3"/>
+      <!-- Col 2 -->
+      <rect x="295" y="164" width="34" height="220" rx="3"/>
+      <!-- Col 3 -->
+      <rect x="383" y="164" width="34" height="220" rx="3"/>
+      <!-- Col 4 -->
+      <rect x="471" y="164" width="34" height="220" rx="3"/>
+      <!-- Col 5 -->
+      <rect x="556" y="164" width="34" height="220" rx="3"/>
+    </g>
+
+    <!-- Base steps -->
+    <rect x="150" y="384" width="500" height="18" fill="#153254"/>
+    <rect x="130" y="402" width="540" height="22" fill="#102742"/>
+    <rect x="100" y="424" width="600" height="30" fill="#0c1f35"/>
+  </g>
+
+  <!-- Ambient Light Circle Behind Scales -->
+  <circle cx="400" cy="230" r="130" fill="#e5b824" opacity="0.08" filter="url(#softGlow)"/>
+
+  <!-- Centered Scales of Justice Heraldry -->
+  <g transform="translate(400, 220)">
+    <!-- Central Pillar -->
+    <rect x="-4" y="-95" width="8" height="185" rx="4" fill="url(#goldGrad)"/>
+    <!-- Finial top -->
+    <circle cx="0" cy="-102" r="9" fill="url(#goldGrad)"/>
+    <polygon points="0,-115 -5,-103 5,-103" fill="url(#goldGrad)"/>
+    
+    <!-- Balance Beam Crossbar -->
+    <path d="M-115,-70 Q0,-78 115,-70" fill="none" stroke="url(#goldGrad)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="0" cy="-74" r="7" fill="url(#goldGrad)"/>
+    <circle cx="-115" cy="-70" r="5" fill="url(#goldGrad)"/>
+    <circle cx="115" cy="-70" r="5" fill="url(#goldGrad)"/>
+
+    <!-- Left Plate Chains & Bowl -->
+    <line x1="-115" y1="-70" x2="-145" y2="-20" stroke="#ffd966" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <line x1="-115" y1="-70" x2="-85" y2="-20" stroke="#ffd966" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M-150,-20 Q-115,5 -80,-20 Z" fill="url(#goldGrad)" opacity="0.9"/>
+    <ellipse cx="-115" cy="-20" rx="35" ry="4" fill="#ffe082"/>
+
+    <!-- Right Plate Chains & Bowl -->
+    <line x1="115" y1="-70" x2="85" y2="-20" stroke="#ffd966" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <line x1="115" y1="-70" x2="145" y2="-20" stroke="#ffd966" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M80,-20 Q115,5 150,-20 Z" fill="url(#goldGrad)" opacity="0.9"/>
+    <ellipse cx="115" cy="-20" rx="35" ry="4" fill="#ffe082"/>
+
+    <!-- Pedestal Base -->
+    <path d="M-40,90 L40,90 L30,82 L-30,82 Z" fill="url(#goldGrad)"/>
+    <rect x="-50" y="90" width="100" height="12" rx="3" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Typography Crest Overlay -->
+  <g text-anchor="middle" font-family="Georgia, serif">
+    <text x="400" y="380" fill="#ffffff" font-size="18" font-weight="bold" letter-spacing="4">LEXCOUNSEL</text>
+    <text x="400" y="405" fill="#e5b824" font-size="11" font-family="-apple-system, sans-serif" font-weight="600" letter-spacing="3">TRUSTED PRACTICE &amp; ADVOCACY</text>
+  </g>
+</svg>

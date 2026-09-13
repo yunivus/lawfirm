@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         allCases = await getCases();
         render();
       } catch (err) {
-        alert("Error updating assignment: " + err.message);
+        showToast("Error updating assignment: " + err.message, "error");
       }
     });
   }

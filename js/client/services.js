@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   function handleFileSelected(file) {
     const val = validateDocumentFile(file);
     if (!val.valid) {
-      alert(val.error);
+      showToast(val.error, "error");
       return;
     }
     selectedFile = file;

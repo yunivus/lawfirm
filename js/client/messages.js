@@ -2,7 +2,7 @@
 import { requireRole } from "../guard.js";
 import { getCases, getCaseById, sendCaseMessage, listenCaseMessages } from "../firestore.js";
 import { initNotificationBell } from "../notifications.js";
-import { formatDateTime, escapeHtml } from "../ui.js";
+import { formatDateTime, escapeHtml, showToast } from "../ui.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const profile = await requireRole(["client"]);
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         message: text
       });
     } catch (err) {
-      alert("Failed to send message: " + err.message);
+      showToast("Failed to send message: " + err.message, "error");
     }
   });
 });

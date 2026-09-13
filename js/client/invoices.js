@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         showToast("Payment processed successfully! Your receipt is available.", "success");
         await loadInvoices();
       } catch (err) {
-        alert("Payment error: " + err.message);
+        showToast("Payment error: " + err.message, "error");
         submitBtn.disabled = false;
         submitBtn.innerHTML = `Authorize & Pay ${formatCurrency(amount)}`;
       }

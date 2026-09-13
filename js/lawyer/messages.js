@@ -1,7 +1,7 @@
 // Lawyer Messaging Logic
 import { requireRole } from "../guard.js";
 import { getCases, sendCaseMessage, listenCaseMessages } from "../firestore.js";
-import { formatDateTime, escapeHtml } from "../ui.js";
+import { formatDateTime, escapeHtml, showToast } from "../ui.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const profile = await requireRole(["lawyer"]);
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         message: text
       });
     } catch (err) {
-      alert("Failed to send message: " + err.message);
+      showToast("Failed to send message: " + err.message, "error");
     }
   });
 });

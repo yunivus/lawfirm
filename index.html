@@ -4,8 +4,122 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>LexCounsel — Professional Legal Services & Practice Management</title>
+  <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/css/variables.css">
   <link rel="stylesheet" href="css/variables.css">
+  <style>
+    :root {
+      --navy: #092544;
+      --navy-2: #0d3157;
+      --gold: #d6a800;
+      --gold-2: #f2c41a;
+      --ink: #142235;
+      --muted: #6e7b8c;
+      --line: #e6ebf1;
+      --paper: #ffffff;
+      --bg: #f5f7fa;
+      --soft: #fbfcfe;
+      --shadow: 0 10px 28px rgba(9,37,68,.07);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 36px)); margin: auto; }
+    .btn {
+      border: 0;
+      border-radius: 7px;
+      padding: 11px 18px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: #bd9400; transform: translateY(-1px); }
+    .btn-outline { background: #fff; border: 1px solid #d9dee6; color: var(--ink); }
+    .btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .btn-link { background: none; border: 0; color: var(--gold); font-weight: 700; padding: 0; cursor: pointer; }
+    .muted { color: var(--muted); }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.15em; font-size: 11px; color: var(--gold); font-weight: 800; }
+    .section { padding: 72px 0; }
+    .section.alt { background: #f7f8fb; }
+    .section-head { text-align: center; max-width: 660px; margin: 0 auto 34px; }
+    .section-head h2 { margin: 7px 0 10px; font-family: Georgia, serif; font-size: 32px; font-weight: 600; color: var(--navy); }
+    .section-head p { margin: 0; color: var(--muted); font-size: 15px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .site-nav { height: 66px; background: #fff; border-bottom: 1px solid #eef1f5; display: flex; align-items: center; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-family: Georgia, serif; font-size: 17px; font-weight: 700; letter-spacing: 0.02em; color: var(--navy); display: flex; align-items: center; }
+    .brand-mark { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; margin-right: 8px; border: 1px solid #d5ad19; border-radius: 50%; color: var(--gold); font-size: 13px; }
+    .nav-links { display: flex; gap: 25px; color: #5d6877; font-size: 13px; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-actions { display: flex; align-items: center; gap: 15px; font-size: 13px; }
+    .hero { padding: 62px 0 54px; background: #fff; border-bottom: 1px solid #eef1f5; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 48px; }
+    .hero h1 { font-family: Georgia, serif; font-size: 46px; line-height: 1.1; margin: 12px 0 16px; color: var(--navy); }
+    .hero p { max-width: 570px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 24px; }
+    .hero-photo { height: 300px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); background: #092544; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .stats-bar { background: #fff; border-bottom: 1px solid #eef1f5; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 24px 0; }
+    .stat { text-align: center; }
+    .stat strong { font: 700 28px Georgia, serif; color: var(--gold); display: block; }
+    .stat span { display: block; color: #687386; font-size: 12px; margin-top: 2px; }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card { padding: 24px; min-height: 160px; }
+    .service-icon { width: 36px; height: 36px; border-radius: 8px; background: #fbf6dc; color: #b18a00; display: grid; place-items: center; margin-bottom: 13px; font-size: 16px; }
+    .service-card h3 { font-family: Georgia, serif; margin: 0 0 7px; font-size: 19px; color: var(--navy); }
+    .service-card p { font-size: 13px; color: var(--muted); margin: 0 0 14px; line-height: 1.5; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .step { text-align: center; }
+    .step-num { width: 36px; height: 36px; border: 1.5px solid #ead48a; color: var(--gold); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 12px; font-weight: 800; font-size: 14px; }
+    .step h4 { margin: 0 0 6px; font-size: 14px; color: var(--navy); }
+    .step p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.5; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .why-list { list-style: none; padding: 0; margin: 20px 0; }
+    .why-list li { display: flex; gap: 12px; margin: 16px 0; font-size: 14px; }
+    .check { color: var(--gold); font-weight: 900; }
+    .why-photo { height: 280px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); background: #092544; }
+    .why-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .quote { padding: 24px; }
+    .quote p { font-family: Georgia, serif; font-size: 14px; margin: 0 0 16px; line-height: 1.6; color: var(--ink); }
+    .quote small { color: var(--muted); font-size: 12px; }
+    .cta { background: var(--navy); color: #fff; text-align: center; padding: 64px 0; }
+    .cta h2 { font: 600 32px Georgia, serif; margin: 0 0 8px; color: #fff; }
+    .cta p { color: #c8d3df; margin: 0 0 24px; font-size: 15px; }
+    .footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.12); color: #dbe4ec; padding: 36px 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 30px; }
+    .footer h4 { margin: 0 0 10px; font-size: 13px; color: #fff; }
+    .footer p, .footer a { font-size: 12px; color: #aebdcb; display: block; margin: 5px 0; }
+    .footer a:hover { color: #fff; }
+    @media(max-width: 900px) {
+      .hero-grid, .why-grid { grid-template-columns: 1fr; }
+      .services, .testimonials { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+    @media(max-width: 650px) {
+      .hero h1 { font-size: 34px; }
+      .services, .testimonials, .stats-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-nav">
@@ -41,13 +155,13 @@
           </div>
         </div>
         <div class="hero-photo">
-          <img src="assets/courtroom.jpg" alt="Modern legal office">
+          <img src="assets/courtroom.jpg" alt="Modern legal office" onerror="this.onerror=null; this.src='assets/courtroom.svg';">
         </div>
       </div>
     </section>
 
-    <section class="stats">
-      <div class="container stats">
+    <section class="stats-bar">
+      <div class="container stats-grid">
         <div class="stat"><strong>500+</strong><span>Cases handled</span></div>
         <div class="stat"><strong>50+</strong><span>Legal professionals</span></div>
         <div class="stat"><strong>98%</strong><span>Client satisfaction</span></div>
@@ -148,7 +262,7 @@
           </ul>
         </div>
         <div class="why-photo">
-          <img src="assets/office.jpg" alt="Legal consultation">
+          <img src="assets/office.jpg" alt="Legal consultation" onerror="this.onerror=null; this.src='assets/office.svg';">
         </div>
       </div>
     </section>

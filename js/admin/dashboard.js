@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         showToast(`Matter assigned to ${lawyerName}. Client and attorney notified.`, "success");
         setTimeout(() => window.location.reload(), 800);
       } catch (err) {
-        alert("Assignment error: " + err.message);
+        showToast("Assignment error: " + err.message, "error");
         confirmBtn.disabled = false;
         confirmBtn.innerHTML = "Assign & Notify Counsel";
       }

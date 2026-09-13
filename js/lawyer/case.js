@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const caseId = params.get("id");
 
   if (!caseId) {
-    alert("No case ID specified.");
+    showToast("No case ID specified.", "error");
     window.location.href = "cases.html";
     return;
   }
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadAll() {
     currentCase = await getCaseById(caseId);
     if (!currentCase) {
-      alert("Case not found.");
+      showToast("Case not found.", "error");
       window.location.href = "cases.html";
       return;
     }

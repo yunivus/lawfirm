@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       saveBtn.disabled = false;
       saveBtn.textContent = "Save Settings";
     } catch (err) {
-      alert("Error saving settings: " + err.message);
+      showToast("Error saving settings: " + err.message, "error");
       saveBtn.disabled = false;
       saveBtn.textContent = "Save Settings";
     }

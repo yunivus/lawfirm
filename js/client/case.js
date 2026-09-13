@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const caseId = params.get("id");
 
   if (!caseId) {
-    alert("No case identifier specified.");
+    showToast("No case identifier specified.", "error");
     window.location.href = "cases.html";
     return;
   }
@@ -34,14 +34,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     currentCase = await getCaseById(caseId);
     if (!currentCase) {
-      alert("Case record not found.");
+      showToast("Case record not found.", "error");
       window.location.href = "cases.html";
       return;
     }
 
     // Security check: Client can only view their own cases
     if (currentCase.clientId !== profile.id) {
-      alert("Unauthorized: You do not have permission to view this legal matter.");
+      showToast("Unauthorized: You do not have permission to view this legal matter.", "error");
       window.location.href = "cases.html";
       return;
     }

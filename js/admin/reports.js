@@ -1,7 +1,7 @@
 // Admin Reports & Export Logic
 import { requireRole } from "../guard.js";
 import { getCases, getLawyers } from "../firestore.js";
-import { formatDate, escapeHtml } from "../ui.js";
+import { formatDate, escapeHtml, showToast } from "../ui.js";
 
 const STAGES = [
   { id: "request_submitted", label: "Request Submitted" },
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // CSV Export functionality
   exportBtn.addEventListener("click", () => {
     if (!allCases || allCases.length === 0) {
-      alert("No case data available to export.");
+      showToast("No case data available to export.", "error");
       return;
     }
 

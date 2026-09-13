@@ -25,8 +25,8 @@ export function requireRole(allowedRoles = []) {
         }
 
         if (profile.status === "suspended") {
-          alert("Your account is currently suspended. Access denied.");
-          await logout();
+          showToast("Your account is currently suspended. Access denied.", "error");
+          setTimeout(() => logout(), 1500);
           return;
         }
 
