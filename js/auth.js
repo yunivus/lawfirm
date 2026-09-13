@@ -57,13 +57,24 @@ export async function registerClient({ name, email, phone, password }) {
   };
 
   try {
-    await setDoc(doc(db, FIRESTORE_COLLECTIONS.USERS, user.uid), profileData);
-    await setDoc(doc(db, FIRESTORE_COLLECTIONS.CLIENTS, user.uid), {
+    try {
+      await setDoc(doc(db, FIRESTORE_COLLECTIONS.USERS, user.uid), profileData);
+    } catch (error) {
+      error.message = `User profile could not be saved: ${error.message}`;
+      throw error;
+    }
+
+    try {
+      await setDoc(doc(db, FIRESTORE_COLLECTIONS.CLIENTS, user.uid), {
       userId: user.uid,
       address: "",
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
-    });
+      });
+    } catch (error) {
+      error.message = `Client profile could not be saved: ${error.message}`;
+      throw error;
+    }
 
     cachedUserProfile = { id: user.uid, ...profileData };
     await logAudit(user.uid, name, "register", "user", user.uid);

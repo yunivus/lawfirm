@@ -37,6 +37,8 @@ firebase deploy --only firestore:rules,hosting
 
 The repository includes [firebase.json](firebase.json), [.firebaserc](.firebaserc), and [firestore.rules](firestore.rules) for this deployment.
 
+After changing [firestore.rules](firestore.rules), deploy the rules before testing registration. If `firebase` is not recognized in PowerShell, run the deployment from the Firebase Console: open **Firestore Database > Rules**, replace the rules with the contents of [firestore.rules](firestore.rules), click **Publish**, and then retry registration.
+
 ## Roles
 
 Public registration creates a `client` account only. The dashboard is selected from the authenticated user's Firestore profile. Admin and lawyer profiles should be created and assigned by a trusted administrator; public users must not be allowed to choose those roles.
