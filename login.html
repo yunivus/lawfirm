@@ -99,7 +99,7 @@
   <div class="toast-container"></div>
 
   <script type="module">
-    import { login, routeForRole } from "./js/auth.js";
+    import { login, redirectToRoleDashboard } from "./js/auth.js";
     import { showToast } from "./js/ui.js";
 
     const form = document.getElementById("login-form");
@@ -124,10 +124,8 @@
         const profile = await login(email, password);
         showToast("Signed in successfully", "success");
         
-        const params = new URLSearchParams(window.location.search);
-        const redirect = params.get("redirect");
         setTimeout(() => {
-          window.location.href = redirect || routeForRole(profile.role);
+          redirectToRoleDashboard(profile.role);
         }, 300);
       } catch (err) {
         let msg = "Invalid email or password.";

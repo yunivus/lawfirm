@@ -14,13 +14,14 @@ import {
   setDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
-import { auth, db, FIRESTORE_COLLECTIONS } from "./firebase-config.js";
+import { auth, authPersistence, db, FIRESTORE_COLLECTIONS } from "./firebase-config.js";
 import { logAudit } from "./firestore.js";
 
 // Session Cache
 let cachedUserProfile = null;
 
 export async function login(email, password) {
+  await authPersistence;
   const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
   const user = credential.user;
   
@@ -38,6 +39,7 @@ export async function login(email, password) {
 }
 
 export async function registerClient({ name, email, phone, password }) {
+  await authPersistence;
   const credential = await createUserWithEmailAndPassword(auth, email.trim(), password);
   const user = credential.user;
 
@@ -128,6 +130,10 @@ export function routeForRole(role) {
     default:
       return "/client/dashboard.html";
   }
+}
+
+export function redirectToRoleDashboard(role) {
+  window.location.replace(routeForRole(role));
 }
 
 export function onAuth(callback) {

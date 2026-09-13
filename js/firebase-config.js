@@ -1,22 +1,24 @@
 // Firebase Configuration & Initialization (LexCounsel)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+import { getAuth, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-storage.js";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
-  apiKey: "AIzaSyCeyrhhalcA4fUf7bw1wbm23C2JJPZ_DjM",
-  authDomain: "dappled-epigram-59v0l.firebaseapp.com",
-  projectId: "dappled-epigram-59v0l",
-  storageBucket: "dappled-epigram-59v0l.firebasestorage.app",
-  messagingSenderId: "318856420709",
-  appId: "1:318856420709:web:1eee866031b14d1b19958c"
+  apiKey: "AIzaSyDswRKL67z6jULDB99me28JgQJF9Bk4tek",
+  authDomain: "law-firm-management-syst-6c874.firebaseapp.com",
+  projectId: "law-firm-management-syst-6c874",
+  storageBucket: "law-firm-management-syst-6c874.firebasestorage.app",
+  messagingSenderId: "886386926435",
+  appId: "1:886386926435:web:b4649c50b8bb8890cda956",
+  measurementId: "G-91Q4GQBTQD"
 };
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const firestoreDatabaseId = "ai-studio-lawfirm-bdc18cc7-c186-4525-a406-88e8dc07357d";
-export const db = getFirestore(app, firestoreDatabaseId);
+export const authPersistence = setPersistence(auth, browserLocalPersistence);
+export const db = getFirestore(app);
 export const storage = getStorage(app);
 
 export const FIRESTORE_COLLECTIONS = {

@@ -1,6 +1,5 @@
 {
   "firestore": {
-    "database": "ai-studio-lawfirm-bdc18cc7-c186-4525-a406-88e8dc07357d",
     "rules": "firestore.rules"
   },
   "hosting": {

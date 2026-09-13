@@ -1,12 +1,11 @@
 {
-  "projectId": "dappled-epigram-59v0l",
-  "appId": "1:318856420709:web:1eee866031b14d1b19958c",
-  "apiKey": "AIzaSyCeyrhhalcA4fUf7bw1wbm23C2JJPZ_DjM",
-  "authDomain": "dappled-epigram-59v0l.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-lawfirm-bdc18cc7-c186-4525-a406-88e8dc07357d",
-  "storageBucket": "dappled-epigram-59v0l.firebasestorage.app",
-  "messagingSenderId": "318856420709",
+  "projectId": "law-firm-management-syst-6c874",
+  "appId": "1:886386926435:web:b4649c50b8bb8890cda956",
+  "apiKey": "AIzaSyDswRKL67z6jULDB99me28JgQJF9Bk4tek",
+  "authDomain": "law-firm-management-syst-6c874.firebaseapp.com",
+  "storageBucket": "law-firm-management-syst-6c874.firebasestorage.app",
+  "messagingSenderId": "886386926435",
   "measurementId": "",
-  "oAuthClientId": "318856420709-7f3hf9915j1i5n7a5lah2gjd1mkmhm03.apps.googleusercontent.com",
+  "oAuthClientId": "",
   "recaptchaSiteKey": ""
 }

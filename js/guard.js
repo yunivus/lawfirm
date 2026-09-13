@@ -20,13 +20,15 @@ export function requireRole(allowedRoles = []) {
         const profile = await getCurrentUserProfile(true);
         if (!profile) {
           showToast("User profile not found. Please log in again.", "error");
-          setTimeout(() => logout(), 1500);
+          setTimeout(() => logout(), 1000);
+          resolve(null);
           return;
         }
 
         if (profile.status === "suspended") {
           showToast("Your account is currently suspended. Access denied.", "error");
-          setTimeout(() => logout(), 1500);
+          setTimeout(() => logout(), 1000);
+          resolve(null);
           return;
         }
 
@@ -36,6 +38,7 @@ export function requireRole(allowedRoles = []) {
         if (expected.length > 0 && !expected.includes(role)) {
           console.warn(`Role mismatch: user is ${role}, page expects ${expected.join(", ")}`);
           window.location.href = routeForRole(role);
+          resolve(null);
           return;
         }
 
@@ -53,7 +56,9 @@ export function requireRole(allowedRoles = []) {
         resolve(profile);
       } catch (err) {
         console.error("Guard error:", err);
-        showToast("Error verifying credentials.", "error");
+        showToast("We could not verify your account. Please sign in again.", "error");
+        setTimeout(() => logout(), 1000);
+        resolve(null);
       }
     });
   });

@@ -4,12 +4,12 @@ LexCounsel is a static web client backed by Firebase Authentication, Firestore, 
 
 ## First-time Firebase setup
 
-The repository is already connected to Firebase project `dappled-epigram-59v0l` through [js/firebase-config.js](js/firebase-config.js). Complete these steps in the Firebase Console before testing registration:
+The repository is already connected to Firebase project `law-firm-management-syst-6c874` through [js/firebase-config.js](js/firebase-config.js). Complete these steps in the Firebase Console before testing registration:
 
-1. Open https://console.firebase.google.com/ and select `dappled-epigram-59v0l`.
+1. Open https://console.firebase.google.com/ and select `law-firm-management-syst-6c874`.
 2. Open **Build > Authentication > Sign-in method**.
 3. Select **Email/Password**, turn on **Enable**, and click **Save**. This fixes `auth/operation-not-allowed`.
-4. Open **Build > Firestore Database** and confirm the database ID is `ai-studio-lawfirm-bdc18cc7-c186-4525-a406-88e8dc07357d`.
+4. Open **Build > Firestore Database** and create or select the **default** database.
 5. Open **Project settings > Your apps** and confirm the Web app configuration matches [firebase-applet-config.json](firebase-applet-config.json).
 6. In **Authentication > Settings > Authorized domains**, add the domain where the app will run. `localhost` is normally already present.
 
@@ -31,7 +31,7 @@ Install the Firebase CLI once:
 ```powershell
 npm install -g firebase-tools
 firebase login
-firebase use dappled-epigram-59v0l
+firebase use law-firm-management-syst-6c874
 firebase deploy --only firestore:rules,hosting
 ```
 

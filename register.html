@@ -113,7 +113,7 @@
   <div class="toast-container"></div>
 
   <script type="module">
-    import { registerClient } from "./js/auth.js";
+    import { registerClient, redirectToRoleDashboard } from "./js/auth.js";
     import { validateRegistration } from "./js/validation.js";
 
     const form = document.getElementById("register-form");
@@ -141,8 +141,8 @@
       submitBtn.innerHTML = '<span class="spinner"></span> Creating Account...';
 
       try {
-        await registerClient({ name, email, phone, password });
-        window.location.replace("/client/dashboard.html");
+        const profile = await registerClient({ name, email, phone, password });
+        redirectToRoleDashboard(profile.role);
       } catch (err) {
         let msg = err.message;
         if (err.code === "auth/email-already-in-use") {
